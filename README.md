@@ -12,7 +12,7 @@ The script automatically detects the standard Sora watermark position and replac
 2. Run the watermark replacement script:
    ```bash
    python hide_watermark.py
-3. Your processed video will be saved as `output.mp4` in the output folder
+3. Your processed video will be saved as `output.mp4` in the project folder
 
 ## Example Results
 
