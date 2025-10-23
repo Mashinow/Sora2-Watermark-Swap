@@ -156,6 +156,10 @@ def process_video(input_path, watermark_path, overlay_path, output_path):
         if ident_count >= 5:
             sw_pos = 66
             next_multiple = ((i + sw_pos) // sw_pos) * sw_pos
+            start_idx = max(next_multiple - sw_pos, 0)
+            end_idx = min(next_multiple, frame_count)
+            for idx in range(start_idx, end_idx):
+                positions[idx] = last_pos
             skip_frames = min(next_multiple - i, frame_count - i)
             ident_count = 0
 
