@@ -18,11 +18,19 @@ The script automatically detects the standard Sora watermark position and replac
 
 Check out these demonstration files included in the repository:
 
-**Original Video** (with default Sora watermark):
-![Input Video](input.mp4)
+### **Original Video** (with default Sora watermark):
 
-**Processed Video** (with your social media watermark):
-![Output Video](output.mp4)
+https://github.com/user-attachments/assets/d9751b1e-8363-483a-b572-47360bda8d62
+
+
+### **Processed Video** (with your social media watermark):
+
+https://github.com/user-attachments/assets/30110b06-6da1-43ce-8307-e0c035dc6b15
+
+
+
+
+
 
 ## Features
 
