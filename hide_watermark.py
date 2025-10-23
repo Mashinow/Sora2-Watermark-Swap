@@ -125,7 +125,7 @@ def process_video(input_path, watermark_path, overlay_path, output_path):
     cap = cv2.VideoCapture(input_path)
     video_clip = VideoFileClip(input_path)
     frames = []
-    audio = video_clip.audio  # может быть None
+    audio = video_clip.audio
     fps = cap.get(cv2.CAP_PROP_FPS)
     watermark_template = cv2.imread(watermark_path)
     overlay_img = cv2.imread(overlay_path, cv2.IMREAD_UNCHANGED)  # RGBA
@@ -162,29 +162,6 @@ def process_video(input_path, watermark_path, overlay_path, output_path):
                 positions[idx] = last_pos
             skip_frames = min(next_multiple - i, frame_count - i)
             ident_count = 0
-
-    last_value = positions[1]
-    same_values = 1
-    group_keys = []
-    for key, value in positions.items():
-        if key == 1:
-            continue
-        if is_zones_close(value, last_value):
-            same_values += 1
-            group_keys.append(key)
-        else:
-            if same_values < 10:
-                for kval in group_keys:
-                    positions[kval] = (0, 0, 0, 0)
-                positions[key] = (0, 0, 0, 0)
-            last_value = value
-            same_values = 1
-            group_keys.clear()
-    for key, value in reversed(positions.items()):
-        if value != (0, 0, 0, 0):
-            last_value = value
-        else:
-            positions[key] = last_value
     cap.release()
     cap = cv2.VideoCapture(input_path)
     last_pos = positions[1]
