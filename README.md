@@ -13,6 +13,15 @@ The script automatically detects the standard Sora watermark position and replac
    ```bash
    python hide_watermark.py
 3. Your processed video will be saved as `output.mp4` in the project folder
+4. You can also use command-line arguments:  
+   - `-i` or `--input` — path to input video  
+   - `-o` or `--output` — path to output video  
+   - `-f` or `--force_type` — force specific watermark type (0 = auto-detect)  
+
+   Example:  
+   ```bash
+   python hide_watermark.py -i input.mp4 -o result.mp4 -f 2
+   ```
 
 ## Example Results
 
