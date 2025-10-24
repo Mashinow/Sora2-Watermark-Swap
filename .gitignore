@@ -7,3 +7,6 @@ test.py
 test2.py
 .idea/
 *.mp4
+/dist/
+/build/
+/hide_watermark.spec
