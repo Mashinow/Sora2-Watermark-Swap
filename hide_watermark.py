@@ -1,3 +1,4 @@
+import argparse
 import os
 import cv2
 import numpy as np
@@ -214,18 +215,26 @@ def detect_best_watermark_type(input_path):
     return best_type
 
 
-def hide_watermark(input_video, force_type=0):
+def hide_watermark(input_video, output_video, force_type=0):
     if force_type:
         best_type = force_type
     else:
         best_type = detect_best_watermark_type(input_video)
+
     watermark_img = W_TYPES[best_type]
-    overlay_img = PATHS.res + "overlay.png"
-    _, filename = os.path.split(input_video)
-    output_filename = "output.mp4"
-    output_video = os.path.join(os.getcwd(), output_filename)
+    overlay_img = os.path.join(PATHS.res, "overlay.png")
+
     process_video(input_video, watermark_img, overlay_img, output_video)
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Hide watermark from video")
+    parser.add_argument("-i", "--input", default='input.mp4', help="Path to input video")
+    parser.add_argument("-o", "--output", default="output.mp4", help="Path to output video (default: output.mp4)")
+    parser.add_argument("-f", "--force_type", type=int, default=0, help="Force watermark type (default: 0, auto-detect)")
+    args = parser.parse_args()
+    hide_watermark(args.input, args.output, args.force_type)
+
+
 if __name__ == "__main__":
-    hide_watermark('input.mp4', 0)
+    main()
